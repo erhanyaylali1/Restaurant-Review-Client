@@ -4,6 +4,7 @@ import { setScreenSize } from "./features/GeneralSlice";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
+import Navbar from "./components/Navbar";
 import "./app.css";
 
 const App = () => {
@@ -21,12 +22,13 @@ const App = () => {
 	};
 
 	return (
-		<div>
+		<>
+			<Navbar />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/sign-in" element={<SignInPage />} />
 			</Routes>
-		</div>
+		</>
 	);
 };
 
