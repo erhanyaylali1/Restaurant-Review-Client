@@ -13,15 +13,21 @@ i18n.use(LanguageDetector)
 		resources: {
 			en: {
 				translation: {
-					home_page: {
-						button_text: "Hello, Button",
+					navbar: {
+						sign_in_button_text: "Sign In",
+						sign_up_button_text: "Sign Up",
+						settings_button_text: "Settings",
+						sign_out_button_text: "Sign Out",
 					},
 				},
 			},
 			tr: {
 				translation: {
-					home_page: {
-						button_text: "Merhaba, Buton",
+					navbar: {
+						sign_in_button_text: "Giriş Yap",
+						sign_up_button_text: "Üye Ol",
+						settings_button_text: "Ayarlar",
+						sign_out_button_text: "Çıkış Yap",
 					},
 				},
 			},

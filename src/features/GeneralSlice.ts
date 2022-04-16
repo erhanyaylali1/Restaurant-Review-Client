@@ -21,6 +21,6 @@ export const generalSlice = createSlice({
 
 export const { setScreenSize } = generalSlice.actions;
 
-export const selectCount = (state: RootState) => state.general.screenSize;
+export const getScreenSize = (state: RootState) => state.general.screenSize;
 
 export default generalSlice.reducer;
