@@ -22,28 +22,11 @@ const Navbar = () => {
 			if (screenSize > 550) {
 				return (
 					<>
-						<ActionItem
-							container
-							item
-							justifyContent="center"
-							alignItems="center"
-						>
+						<ActionItem container item justifyContent="center" alignItems="center">
 							<Link to="/profile">
-								<ActionIconAndTitleContainer
-									container
-									item
-									flexDirection="row"
-									justifyContent="center"
-									alignItems="center"
-								>
-									<ActionIcon
-										src={ProfileIcon}
-										alt="Profile"
-									/>
-									<ActionText
-										fontSize="21px"
-										margin="5px 5px 0 5px"
-									>
+								<ActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
+									<ActionIcon src={ProfileIcon} alt="Profile" />
+									<ActionText fontSize="21px" margin="5px 5px 0 5px">
 										Erhan
 									</ActionText>
 								</ActionIconAndTitleContainer>
@@ -53,52 +36,24 @@ const Navbar = () => {
 				);
 			} else {
 				return (
-					<div
-						id="close-icon"
-						className={isMenuOpened ? "open" : ""}
-						onClick={() => setIsMenuOpened(!isMenuOpened)}
-					>
+					<div id="close-icon" className={isMenuOpened ? "open" : ""} onClick={() => setIsMenuOpened(!isMenuOpened)}>
 						<span></span>
 						<span></span>
 						<span></span>
 						<span></span>
 						<OpenMenu id="open-menu">
-							<ActionItem
-								container
-								item
-								justifyContent="center"
-								alignItems="center"
-							>
+							<ActionItem container item justifyContent="center" alignItems="center">
 								<Link to="/profile">
-									<MenuActionIconAndTitleContainer
-										container
-										item
-										flexDirection="row"
-										justifyContent="center"
-										alignItems="center"
-									>
-										<ActionIcon
-											src={ProfileIcon}
-											alt="Profile"
-											height="18px"
-											width="18px"
-										/>
-										<ActionText
-											fontSize="18px"
-											margin="5px 0 0 5px"
-										>
+									<MenuActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
+										<ActionIcon src={ProfileIcon} alt="Profile" height="18px" width="18px" />
+										<ActionText fontSize="18px" margin="5px 0 0 5px">
 											Erhan
 										</ActionText>
 									</MenuActionIconAndTitleContainer>
 								</Link>
 							</ActionItem>
 							<WhiteLine />
-							<ActionItem
-								container
-								item
-								justifyContent="center"
-								alignItems="center"
-							>
+							<ActionItem container item justifyContent="center" alignItems="center">
 								<Link to="/settings">
 									<MenuActionIconAndTitleContainer
 										container
@@ -108,30 +63,15 @@ const Navbar = () => {
 										alignItems="center"
 										borderRadius="5px"
 									>
-										<ActionIcon
-											src={SettingIcon}
-											alt="Settings"
-											height="18px"
-											width="18px"
-										/>
-										<ActionText
-											fontSize="18px"
-											margin="4px 0 0 5px"
-										>
-											{t<string>(
-												"navbar.settings_button_text"
-											)}
+										<ActionIcon src={SettingIcon} alt="Settings" height="18px" width="18px" />
+										<ActionText fontSize="18px" margin="4px 0 0 5px">
+											{t<string>("navbar.settings_button_text")}
 										</ActionText>
 									</MenuActionIconAndTitleContainer>
 								</Link>
 							</ActionItem>
 							<WhiteLine />
-							<ActionItem
-								container
-								item
-								justifyContent="center"
-								alignItems="center"
-							>
+							<ActionItem container item justifyContent="center" alignItems="center">
 								<Link to="/settings">
 									<MenuActionIconAndTitleContainer
 										container
@@ -141,19 +81,9 @@ const Navbar = () => {
 										alignItems="center"
 										borderRadius="5px"
 									>
-										<ActionIcon
-											src={SignOutIcon}
-											alt="Sign Out"
-											height="18px"
-											width="18px"
-										/>
-										<ActionText
-											fontSize="18px"
-											margin="3px 0 0 5px"
-										>
-											{t<string>(
-												"navbar.sign_out_button_text"
-											)}
+										<ActionIcon src={SignOutIcon} alt="Sign Out" height="18px" width="18px" />
+										<ActionText fontSize="18px" margin="3px 0 0 5px">
+											{t<string>("navbar.sign_out_button_text")}
 										</ActionText>
 									</MenuActionIconAndTitleContainer>
 								</Link>
@@ -166,26 +96,14 @@ const Navbar = () => {
 			if (screenSize > 550) {
 				return (
 					<>
-						<ActionItem
-							container
-							item
-							justifyContent="center"
-							alignItems="center"
-							padding="0px 25px 0px 25px"
-						>
+						<ActionItem container item justifyContent="center" alignItems="center" padding="0px 25px 0px 25px">
 							<Link to="/sign-in">
 								<ActionText fontSize="21px" margin="2px 0 0 0">
 									{t<string>("navbar.sign_in_button_text")}
 								</ActionText>
 							</Link>
 						</ActionItem>
-						<ActionItem
-							container
-							item
-							justifyContent="center"
-							alignItems="center"
-							padding="0px 25px 0px 25px"
-						>
+						<ActionItem container item justifyContent="center" alignItems="center" padding="0px 25px 0px 25px">
 							<Link to="/sign-up">
 								<ActionText fontSize="21px" margin="2px 0 0 0">
 									{t<string>("navbar.sign_up_button_text")}
@@ -196,54 +114,24 @@ const Navbar = () => {
 				);
 			} else {
 				return (
-					<div
-						id="close-icon"
-						className={isMenuOpened ? "open" : ""}
-						onClick={() => setIsMenuOpened(!isMenuOpened)}
-					>
+					<div id="close-icon" className={isMenuOpened ? "open" : ""} onClick={() => setIsMenuOpened(!isMenuOpened)}>
 						<span></span>
 						<span></span>
 						<span></span>
 						<span></span>
 						<OpenMenu id="open-menu">
-							<ActionItem
-								container
-								item
-								justifyContent="center"
-								alignItems="center"
-							>
+							<ActionItem container item justifyContent="center" alignItems="center">
 								<Link to="/sign-in">
-									<MenuActionIconAndTitleContainer
-										container
-										item
-										flexDirection="row"
-										justifyContent="center"
-										alignItems="center"
-									>
-										<ActionIcon
-											src={ProfileIcon}
-											alt="Profile"
-											height="18px"
-											width="18px"
-										/>
-										<ActionText
-											fontSize="18px"
-											margin="5px 0 0 5px"
-										>
-											{t<string>(
-												"navbar.sign_in_button_text"
-											)}
+									<MenuActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
+										<ActionIcon src={ProfileIcon} alt="Profile" height="18px" width="18px" />
+										<ActionText fontSize="18px" margin="5px 0 0 5px">
+											{t<string>("navbar.sign_in_button_text")}
 										</ActionText>
 									</MenuActionIconAndTitleContainer>
 								</Link>
 							</ActionItem>
 							<WhiteLine />
-							<ActionItem
-								container
-								item
-								justifyContent="center"
-								alignItems="center"
-							>
+							<ActionItem container item justifyContent="center" alignItems="center">
 								<Link to="/sign-up">
 									<MenuActionIconAndTitleContainer
 										container
@@ -253,19 +141,9 @@ const Navbar = () => {
 										alignItems="center"
 										borderRadius="5px"
 									>
-										<ActionIcon
-											src={SettingIcon}
-											alt="Settings"
-											height="18px"
-											width="18px"
-										/>
-										<ActionText
-											fontSize="18px"
-											margin="5px 0 0 5px"
-										>
-											{t<string>(
-												"navbar.sign_up_button_text"
-											)}
+										<ActionIcon src={SettingIcon} alt="Settings" height="18px" width="18px" />
+										<ActionText fontSize="18px" margin="5px 0 0 5px">
+											{t<string>("navbar.sign_up_button_text")}
 										</ActionText>
 									</MenuActionIconAndTitleContainer>
 								</Link>
@@ -278,27 +156,11 @@ const Navbar = () => {
 	};
 
 	return (
-		<NavbarContainer
-			container
-			direction="row"
-			padding={
-				screenSize < 550 ? "0px 15px 0px 15px;" : "0px 40px 0px 40px;"
-			}
-		>
+		<NavbarContainer container direction="row" padding={screenSize < 550 ? "0px 15px 0px 15px;" : "0px 40px 0px 40px;"}>
 			<Link to="/">
-				<HeaderContainer
-					container
-					item
-					direction="row"
-					alignItems="center"
-				>
+				<HeaderContainer container item direction="row" alignItems="center">
 					<LogoContainer src={Logo} alt="Company Logo" />
-					<ActionText
-						fontSize="28px"
-						fontWeight="600"
-						letterSpacing="2px"
-						margin="2px 0 0 15px"
-					>
+					<ActionText fontSize="28px" fontWeight="600" letterSpacing="2px" margin="2px 0 0 15px">
 						review
 					</ActionText>
 				</HeaderContainer>
@@ -323,12 +185,10 @@ const NavbarContainer = styled(Grid)`
 const HeaderContainer = styled(Grid)`
 	width: auto !important;
 	&:hover div {
-		filter: brightness(0) saturate(100%) invert(14%) sepia(13%) saturate(6%)
-			hue-rotate(314deg) brightness(99%) contrast(83%);
+		filter: brightness(0) saturate(100%) invert(14%) sepia(13%) saturate(6%) hue-rotate(314deg) brightness(99%) contrast(83%);
 	}
 	&:hover img {
-		filter: brightness(0) saturate(100%) invert(14%) sepia(13%) saturate(6%)
-			hue-rotate(314deg) brightness(99%) contrast(83%);
+		filter: brightness(0) saturate(100%) invert(14%) sepia(13%) saturate(6%) hue-rotate(314deg) brightness(99%) contrast(83%);
 	}
 `;
 const LogoContainer = styled.img`
