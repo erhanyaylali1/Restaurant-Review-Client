@@ -238,6 +238,7 @@ const WhiteLine = styled.div`
 	margin-inline: auto;
 `;
 const OpenMenu = styled(Grid)``;
+
 // INTERFACES
 
 interface IActionIcon {
