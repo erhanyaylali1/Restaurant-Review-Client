@@ -4,6 +4,7 @@ import { setScreenSize } from "./features/GeneralSlice";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
+import "./app.css";
 
 const App = () => {
 	const dispatch = useDispatch();
