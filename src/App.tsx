@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
 import Navbar from "./components/Navbar";
 import "./app.css";
+import SignUpPage from "./pages/SignUpPage";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/sign-in" element={<SignInPage />} />
+				<Route path="/sign-up" element={<SignUpPage />} />
 			</Routes>
 		</>
 	);
