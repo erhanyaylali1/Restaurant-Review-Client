@@ -19,140 +19,150 @@ const Navbar = () => {
 
 	const renderActionButtons = () => {
 		if (is_user_logged_in) {
-			if (screenSize > 550) {
-				return (
-					<>
-						<ActionItem container item justifyContent="center" alignItems="center">
-							<Link to="/profile">
-								<ActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
-									<ActionIcon src={ProfileIcon} alt="Profile" />
-									<ActionText fontSize="21px" margin="5px 5px 0 5px">
-										Erhan
-									</ActionText>
-								</ActionIconAndTitleContainer>
-							</Link>
-						</ActionItem>
-					</>
-				);
-			} else {
-				return (
-					<div id="close-icon" className={isMenuOpened ? "open" : ""} onClick={() => setIsMenuOpened(!isMenuOpened)}>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<OpenMenu id="open-menu">
-							<ActionItem container item justifyContent="center" alignItems="center">
-								<Link to="/profile">
-									<MenuActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
-										<ActionIcon src={ProfileIcon} alt="Profile" height="18px" width="18px" />
-										<ActionText fontSize="18px" margin="5px 0 0 5px">
-											Erhan
-										</ActionText>
-									</MenuActionIconAndTitleContainer>
-								</Link>
-							</ActionItem>
-							<WhiteLine />
-							<ActionItem container item justifyContent="center" alignItems="center">
-								<Link to="/settings">
-									<MenuActionIconAndTitleContainer
-										container
-										item
-										flexDirection="row"
-										justifyContent="center"
-										alignItems="center"
-										borderRadius="5px"
-									>
-										<ActionIcon src={SettingIcon} alt="Settings" height="18px" width="18px" />
-										<ActionText fontSize="18px" margin="4px 0 0 5px">
-											{t<string>("navbar.settings_button_text")}
-										</ActionText>
-									</MenuActionIconAndTitleContainer>
-								</Link>
-							</ActionItem>
-							<WhiteLine />
-							<ActionItem container item justifyContent="center" alignItems="center">
-								<Link to="/settings">
-									<MenuActionIconAndTitleContainer
-										container
-										item
-										flexDirection="row"
-										justifyContent="center"
-										alignItems="center"
-										borderRadius="5px"
-									>
-										<ActionIcon src={SignOutIcon} alt="Sign Out" height="18px" width="18px" />
-										<ActionText fontSize="18px" margin="3px 0 0 5px">
-											{t<string>("navbar.sign_out_button_text")}
-										</ActionText>
-									</MenuActionIconAndTitleContainer>
-								</Link>
-							</ActionItem>
-						</OpenMenu>
-					</div>
-				);
-			}
+			if (screenSize > 550) return renderDesktopLoggedIn();
+			else return renderMobileLoggedIn();
 		} else {
-			if (screenSize > 550) {
-				return (
-					<>
-						<ActionItem container item justifyContent="center" alignItems="center" padding="0px 25px 0px 25px">
-							<Link to="/sign-in">
-								<ActionText fontSize="21px" margin="2px 0 0 0">
+			if (screenSize > 550) return renderDesktopNotLoggedIn();
+			else return renderMobileNotLoggedIn();
+		}
+	};
+
+	const renderDesktopLoggedIn = () => {
+		return (
+			<>
+				<ActionItem container item justifyContent="center" alignItems="center">
+					<Link to="/profile">
+						<ActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
+							<ActionIcon src={ProfileIcon} alt="Profile" />
+							<ActionText fontSize="21px" margin="5px 5px 0 5px">
+								Erhan
+							</ActionText>
+						</ActionIconAndTitleContainer>
+					</Link>
+				</ActionItem>
+			</>
+		);
+	};
+
+	const renderDesktopNotLoggedIn = () => {
+		return (
+			<>
+				<ActionItem container item justifyContent="center" alignItems="center" padding="0px 25px 0px 25px">
+					<Link to="/sign-in">
+						<ActionText fontSize="21px" margin="2px 0 0 0">
+							{t<string>("navbar.sign_in_button_text")}
+						</ActionText>
+					</Link>
+				</ActionItem>
+				<ActionItem container item justifyContent="center" alignItems="center" padding="0px 25px 0px 25px">
+					<Link to="/sign-up">
+						<ActionText fontSize="21px" margin="2px 0 0 0">
+							{t<string>("navbar.sign_up_button_text")}
+						</ActionText>
+					</Link>
+				</ActionItem>
+			</>
+		);
+	};
+
+	const renderMobileLoggedIn = () => {
+		return (
+			<div id="close-icon" className={isMenuOpened ? "open" : ""} onClick={() => setIsMenuOpened(!isMenuOpened)}>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<OpenMenu id="open-menu">
+					<ActionItem container item justifyContent="center" alignItems="center">
+						<Link to="/profile">
+							<MenuActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
+								<ActionIcon src={ProfileIcon} alt="Profile" height="18px" width="18px" />
+								<ActionText fontSize="18px" margin="5px 0 0 5px">
+									Erhan
+								</ActionText>
+							</MenuActionIconAndTitleContainer>
+						</Link>
+					</ActionItem>
+					<WhiteLine />
+					<ActionItem container item justifyContent="center" alignItems="center">
+						<Link to="/settings">
+							<MenuActionIconAndTitleContainer
+								container
+								item
+								flexDirection="row"
+								justifyContent="center"
+								alignItems="center"
+								borderRadius="5px"
+							>
+								<ActionIcon src={SettingIcon} alt="Settings" height="18px" width="18px" />
+								<ActionText fontSize="18px" margin="4px 0 0 5px">
+									{t<string>("navbar.settings_button_text")}
+								</ActionText>
+							</MenuActionIconAndTitleContainer>
+						</Link>
+					</ActionItem>
+					<WhiteLine />
+					<ActionItem container item justifyContent="center" alignItems="center">
+						<Link to="/settings">
+							<MenuActionIconAndTitleContainer
+								container
+								item
+								flexDirection="row"
+								justifyContent="center"
+								alignItems="center"
+								borderRadius="5px"
+							>
+								<ActionIcon src={SignOutIcon} alt="Sign Out" height="18px" width="18px" />
+								<ActionText fontSize="18px" margin="3px 0 0 5px">
+									{t<string>("navbar.sign_out_button_text")}
+								</ActionText>
+							</MenuActionIconAndTitleContainer>
+						</Link>
+					</ActionItem>
+				</OpenMenu>
+			</div>
+		);
+	};
+
+	const renderMobileNotLoggedIn = () => {
+		return (
+			<div id="close-icon" className={isMenuOpened ? "open" : ""} onClick={() => setIsMenuOpened(!isMenuOpened)}>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<OpenMenu id="open-menu">
+					<ActionItem container item justifyContent="center" alignItems="center">
+						<Link to="/sign-in">
+							<MenuActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
+								<ActionIcon src={ProfileIcon} alt="Profile" height="18px" width="18px" />
+								<ActionText fontSize="18px" margin="5px 0 0 5px">
 									{t<string>("navbar.sign_in_button_text")}
 								</ActionText>
-							</Link>
-						</ActionItem>
-						<ActionItem container item justifyContent="center" alignItems="center" padding="0px 25px 0px 25px">
-							<Link to="/sign-up">
-								<ActionText fontSize="21px" margin="2px 0 0 0">
+							</MenuActionIconAndTitleContainer>
+						</Link>
+					</ActionItem>
+					<WhiteLine />
+					<ActionItem container item justifyContent="center" alignItems="center">
+						<Link to="/sign-up">
+							<MenuActionIconAndTitleContainer
+								container
+								item
+								flexDirection="row"
+								justifyContent="center"
+								alignItems="center"
+								borderRadius="5px"
+							>
+								<ActionIcon src={SettingIcon} alt="Settings" height="18px" width="18px" />
+								<ActionText fontSize="18px" margin="5px 0 0 5px">
 									{t<string>("navbar.sign_up_button_text")}
 								</ActionText>
-							</Link>
-						</ActionItem>
-					</>
-				);
-			} else {
-				return (
-					<div id="close-icon" className={isMenuOpened ? "open" : ""} onClick={() => setIsMenuOpened(!isMenuOpened)}>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<OpenMenu id="open-menu">
-							<ActionItem container item justifyContent="center" alignItems="center">
-								<Link to="/sign-in">
-									<MenuActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
-										<ActionIcon src={ProfileIcon} alt="Profile" height="18px" width="18px" />
-										<ActionText fontSize="18px" margin="5px 0 0 5px">
-											{t<string>("navbar.sign_in_button_text")}
-										</ActionText>
-									</MenuActionIconAndTitleContainer>
-								</Link>
-							</ActionItem>
-							<WhiteLine />
-							<ActionItem container item justifyContent="center" alignItems="center">
-								<Link to="/sign-up">
-									<MenuActionIconAndTitleContainer
-										container
-										item
-										flexDirection="row"
-										justifyContent="center"
-										alignItems="center"
-										borderRadius="5px"
-									>
-										<ActionIcon src={SettingIcon} alt="Settings" height="18px" width="18px" />
-										<ActionText fontSize="18px" margin="5px 0 0 5px">
-											{t<string>("navbar.sign_up_button_text")}
-										</ActionText>
-									</MenuActionIconAndTitleContainer>
-								</Link>
-							</ActionItem>
-						</OpenMenu>
-					</div>
-				);
-			}
-		}
+							</MenuActionIconAndTitleContainer>
+						</Link>
+					</ActionItem>
+				</OpenMenu>
+			</div>
+		);
 	};
 
 	return (
