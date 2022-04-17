@@ -211,7 +211,7 @@ const ActionsContainer = styled(Grid)`
 `;
 const ActionItem = styled(Grid)`
 	width: auto !important;
-	padding: ${(props: IActionItem) => props.padding || "0px"};
+	padding: ${(props: ActionItemProps) => props.padding || "0px"};
 	cursor: pointer;
 	transition: background-color 0.2s ease;
 	&:hover {
@@ -222,10 +222,10 @@ const ActionText = styled.div`
 	color: white;
 	font-family: "Mina", sans-serif;
 	transition: filter 0.2s ease;
-	letter-spacing: ${(props: IActionProps) => props.letterSpacing || "1px"};
-	font-size: ${(props: IActionProps) => props.fontSize || "22px"};
-	font-weight: ${(props: IActionProps) => props.fontWeight || 400};
-	margin: ${(props: IActionProps) => props.margin || "0px"};
+	letter-spacing: ${(props: ActionTextProps) => props.letterSpacing || "1px"};
+	font-size: ${(props: ActionTextProps) => props.fontSize || "22px"};
+	font-weight: ${(props: ActionTextProps) => props.fontWeight || 400};
+	margin: ${(props: ActionTextProps) => props.margin || "0px"};
 `;
 const ActionIconAndTitleContainer = styled(Grid)`
 	width: auto !important;
@@ -237,8 +237,8 @@ const MenuActionIconAndTitleContainer = styled(Grid)`
 	padding: 10px;
 `;
 const ActionIcon = styled.img`
-	width: ${(props: IActionIcon) => props.width || "25px"};
-	height: ${(props: IActionIcon) => props.height || "25px"};
+	width: ${(props: ActionIconProps) => props.width || "25px"};
+	height: ${(props: ActionIconProps) => props.height || "25px"};
 	margin-right: 10px;
 `;
 const WhiteLine = styled.div`
@@ -251,14 +251,14 @@ const OpenMenu = styled(Grid)``;
 
 // INTERFACES
 
-interface IActionIcon {
+interface ActionIconProps {
 	width?: string;
 	height?: string;
 }
-interface IActionItem {
+interface ActionItemProps {
 	padding?: string;
 }
-interface IActionProps {
+interface ActionTextProps {
 	letterSpacing?: string;
 	fontSize?: string;
 	fontWeight?: string;

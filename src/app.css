@@ -1,5 +1,5 @@
 @import "~antd/dist/antd.css";
-@import url("https://fonts.googleapis.com/css2?family=Mina&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Markazi+Text&family=Merriweather&family=Mina:wght@400;700&family=Mogra&family=Montserrat&display=swap");
 
 body {
 	margin: 0;
@@ -86,4 +86,5 @@ code {
 	right: 0px;
 	background-color: #ff4040;
 	transition: all 0.35s ease-in-out;
+	z-index: 99999;
 }
