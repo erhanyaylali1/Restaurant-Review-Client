@@ -79,10 +79,10 @@ code {
 	position: absolute;
 	opacity: 0;
 	visibility: hidden;
-	border-radius: 8px;
+	border-radius: 3px;
 	height: 0;
 	overflow: hidden;
-	top: 80px;
+	top: 65px;
 	right: 0px;
 	background-color: #ff4040;
 	transition: all 0.35s ease-in-out;
