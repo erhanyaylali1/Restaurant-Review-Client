@@ -6,13 +6,13 @@ import Text from "./Text";
 type ButtonContainerProps = {
 	hover?: string;
 	fontSize?: string;
-	color?: string;
-	backgroundColor?: string;
+	color?: "#fff" | "#000" | "#333" | "#FF40404" | "#20438C" | "#CE4646" | "#2E982C" | undefined;
+	backgroundColor?: "#fff" | "#333" | "#FF40404" | "#20438C" | "#CE4646" | "#2E982C" | undefined;
 	border?: string;
 	borderRadius?: string;
 	boxShadow?: string;
-	fontWeight?: string;
-	fontFamily?: string;
+	fontWeight?: "400" | "500" | "600" | "700" | "800" | "900" | undefined;
+	fontFamily?: "Montserrat" | "Merriweather" | "Mogra" | "Mina" | "Markazi Text" | "Barlow" | undefined;
 	margin?: string;
 	iconMargin?: string;
 	padding?: string;

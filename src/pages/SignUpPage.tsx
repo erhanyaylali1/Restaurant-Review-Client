@@ -21,6 +21,7 @@ const SignUpPage = () => {
 
 	if (is_user_logged_in) navigate("/profile");
 
+	const redirect_to_the_create_account = () => navigate("/sign-up-create");
 	const sign_up_with_google = () => {};
 	const measuremenets: IMeasurements = calculateDynamicMeasurements(screenSize);
 
@@ -93,11 +94,11 @@ const SignUpPage = () => {
 						borderRadius="3px"
 						boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
 						text={t<string>("sign_up.sign_up")}
-						callBack={sign_up_with_google}
+						callBack={redirect_to_the_create_account}
 						fontFamily="Markazi Text"
 						fontSize="22px"
 					/>
-					<SignInContainer>
+					<Grid>
 						<IconButton
 							margin="25px 0 0 0"
 							borderRadius="3px"
@@ -109,7 +110,7 @@ const SignUpPage = () => {
 							textAlign="center"
 							callBack={sign_up_with_google}
 						/>
-					</SignInContainer>
+					</Grid>
 				</ButtonContainer>
 			</ContainerChild>
 		</Container>
@@ -135,7 +136,6 @@ const ButtonContainer = styled(Grid)`
 	width: ${(props: IButtonProps) => props.width || "auto"};
 	margin: ${(props: IButtonProps) => props.margin || "0 0 0 0"};
 `;
-const SignInContainer = styled(Grid)``;
 
 // interface
 interface IMeasurements {
