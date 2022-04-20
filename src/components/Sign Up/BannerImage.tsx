@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface Props {
 	height?: string;
-	text: string;
+	text?: string;
 	image: any;
 	fontSize?: string;
 }
@@ -12,7 +12,7 @@ interface Props {
 const BannerImage: FC<Props> = ({ height, text, image, fontSize }) => {
 	return (
 		<ImageContainer height={height}>
-			<ImageText fontSize={fontSize}>{text}</ImageText>
+			{text && <ImageText fontSize={fontSize}>{text}</ImageText>}
 			<ImageContainerImage alt="Review Restourants Image" src={image} />
 		</ImageContainer>
 	);

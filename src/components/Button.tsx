@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import { FC } from "react";
 import styled from "styled-components";
 import Text from "./Text";
@@ -21,19 +20,18 @@ type ButtonContainerProps = {
 	textWidth?: string;
 	height?: string;
 	maxWidth?: string;
-	containerWidth?: string;
 };
 
 type Props = {
 	text: string;
-	icon?: any;
-	callBack: () => void;
+	type?: "button" | "submit" | "reset" | undefined;
+	callBack?: () => void;
 };
 
-const IconButton: FC<ButtonContainerProps & Props> = ({
+const Button: FC<ButtonContainerProps & Props> = ({
 	hover,
 	text,
-	icon,
+	type,
 	callBack,
 	fontSize,
 	color,
@@ -44,13 +42,10 @@ const IconButton: FC<ButtonContainerProps & Props> = ({
 	fontWeight,
 	fontFamily,
 	margin,
-	iconMargin,
 	padding,
 	textAlign,
-	height,
 	width,
 	maxWidth,
-	containerWidth,
 }) => {
 	return (
 		<ButtonContainer
@@ -60,40 +55,31 @@ const IconButton: FC<ButtonContainerProps & Props> = ({
 			border={border}
 			borderRadius={borderRadius}
 			boxShadow={boxShadow}
-			width={containerWidth}
 			hover={hover}
-			onClick={callBack}
+			width={width}
 			maxWidth={maxWidth}
+			onClick={callBack}
+			type={type}
 		>
-			{icon ? <Icon src={icon} height={height} width={width} iconMargin={iconMargin} /> : null}
 			<Text text={text} fontSize={fontSize} fontWeight={fontWeight} fontFamily={fontFamily} color={color} textAlign={textAlign} />
 		</ButtonContainer>
 	);
 };
 
-export default IconButton;
+export default Button;
 
-const ButtonContainer = styled(Grid)`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color?: ${(props: ButtonContainerProps) => props.backgroundColor || "#EEE"};
-	border?: ${(props: ButtonContainerProps) => props.border || "none"};
-	border-radius?: ${(props: ButtonContainerProps) => props.borderRadius || "0"};
-	box-shadow?: ${(props: ButtonContainerProps) => props.boxShadow || "none"};
-	margin?: ${(props: ButtonContainerProps) => props.iconMargin || "0 0 0 0"};
-	padding?: ${(props: ButtonContainerProps) => props.padding || "0 0 0 0"};
-	text-align?: ${(props: ButtonContainerProps) => props.textAlign || "left"};
+const ButtonContainer = styled.button`
+	background-color: ${(props: ButtonContainerProps) => props.backgroundColor || "#EEE"};
+	border: ${(props: ButtonContainerProps) => props.border || "none"};
+	border-radius: ${(props: ButtonContainerProps) => props.borderRadius || "0"};
+	box-shadow: ${(props: ButtonContainerProps) => props.boxShadow || "none"};
+	margin: ${(props: ButtonContainerProps) => props.margin || "0 0 0 0"};
+	padding: ${(props: ButtonContainerProps) => props.padding || "0 0 0 0"};
+	text-align: ${(props: ButtonContainerProps) => props.textAlign || "left"};
+	width: ${(props: ButtonContainerProps) => props.width || "20px"};
 	max-width: ${(props: ButtonContainerProps) => props.maxWidth || "auto"};
-	width: ${(props: ButtonContainerProps) => props.width || "auto"};
 	cursor: pointer;
 	&:hover {
 		background-color: ${(props: ButtonContainerProps) => props.hover || "#EEE"};
 	}
-`;
-
-const Icon = styled.img`
-	height: ${(props: ButtonContainerProps) => props.height || "20px"};
-	width: ${(props: ButtonContainerProps) => props.width || "20px"};
-	margin: ${(props: ButtonContainerProps) => props.iconMargin || "0 0 0 0"};
 `;
