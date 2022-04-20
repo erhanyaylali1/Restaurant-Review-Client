@@ -21,6 +21,7 @@ type ButtonContainerProps = {
 	textWidth?: string;
 	height?: string;
 	maxWidth?: string;
+	containerWidth?: string;
 };
 
 type Props = {
@@ -49,6 +50,7 @@ const IconButton: FC<ButtonContainerProps & Props> = ({
 	height,
 	width,
 	maxWidth,
+	containerWidth,
 }) => {
 	return (
 		<ButtonContainer
@@ -58,6 +60,7 @@ const IconButton: FC<ButtonContainerProps & Props> = ({
 			border={border}
 			borderRadius={borderRadius}
 			boxShadow={boxShadow}
+			width={containerWidth}
 			hover={hover}
 			onClick={callBack}
 			maxWidth={maxWidth}
@@ -82,6 +85,7 @@ const ButtonContainer = styled(Grid)`
 	padding?: ${(props: ButtonContainerProps) => props.padding || "0 0 0 0"};
 	text-align?: ${(props: ButtonContainerProps) => props.textAlign || "left"};
 	max-width: ${(props: ButtonContainerProps) => props.maxWidth || "auto"};
+	width: ${(props: ButtonContainerProps) => props.width || "auto"};
 	cursor: pointer;
 	&:hover {
 		background-color: ${(props: ButtonContainerProps) => props.hover || "#EEE"};

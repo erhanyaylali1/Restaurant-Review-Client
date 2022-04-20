@@ -154,6 +154,7 @@ const SignUpCreatPage = () => {
 							type="submit"
 							text="Sign Up"
 							backgroundColor="#20438C"
+							hover="#4b659a"
 							color="#fff"
 							fontFamily="Markazi Text"
 							fontSize="25px"
@@ -163,17 +164,16 @@ const SignUpCreatPage = () => {
 							borderRadius="3px"
 							textAlign="center"
 						/>
-						<Grid>
-							<IconButton
-								borderRadius="3px"
-								text={t<string>("sign_up.sign_in")}
-								fontFamily="Markazi Text"
-								fontSize="22px"
-								color="#20438C"
-								textAlign="center"
-								callBack={navigateToSignIn}
-							/>
-						</Grid>
+						<IconButton
+							containerWidth="100%"
+							borderRadius="3px"
+							text={t<string>("sign_up.sign_in")}
+							fontFamily="Markazi Text"
+							fontSize="22px"
+							color="#20438C"
+							textAlign="center"
+							callBack={navigateToSignIn}
+						/>
 					</ButtonContainer>
 				</form>
 			</FormContainer>
