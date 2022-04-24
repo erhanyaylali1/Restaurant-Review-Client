@@ -21,6 +21,7 @@ const SignInPage = () => {
 	const sign_up_with_google = () => {};
 	const navigateToSignUp = () => navigate("/sign-up");
 	const screenSize = useSelector(getScreenSize);
+	const measures = measureDynamicHeights(screenSize);
 
 	const validationSchema = Yup.object({
 		email: Yup.string().email(t<string>("validation_messages.email_not_valid")).required(t<string>("validation_messages.email")),
@@ -43,11 +44,7 @@ const SignInPage = () => {
 	});
 
 	return (
-		<Container
-			flexDirection={screenSize < 1000 ? "column" : "row"}
-			justifyContent={screenSize < 1000 ? "center" : "space-around"}
-			alignItems="center"
-		>
+		<Container flexDirection={measures.containerFlexDirection} justifyContent={measures.containerJustifyContent} alignItems="center">
 			<SignInEmail>
 				<Banner>
 					<Grid>
@@ -129,27 +126,27 @@ const SignInPage = () => {
 				</FormContainer>
 			</SignInEmail>
 			<OrSeperator
-				flexDirection={screenSize < 1000 ? "row" : "column"}
-				height={screenSize < 1000 ? "auto" : "30vh"}
-				width={screenSize < 1000 ? "100%" : "auto"}
-				margin={screenSize < 1000 ? "0" : "0 30px"}
-				maxWidth={screenSize < 1000 ? "70%" : "auto"}
+				flexDirection={measures.orSeperatorFlexDirection}
+				height={measures.orSeperatorHeight}
+				width={measures.orSeperatorWidth}
+				margin={measures.orSeperatorMargin}
+				maxWidth={measures.orSeperatorMaxWidth}
 			>
 				<Line
-					borderLeft={screenSize < 1000 ? "0" : "1px solid #333"}
-					borderTop={screenSize < 1000 ? "1px solid #333" : "0"}
-					width={screenSize < 1000 ? "100%" : "0"}
-					height={screenSize < 1000 ? "0" : "100%"}
+					borderLeft={measures.orLineBorderLeft}
+					borderTop={measures.orLineBorderTop}
+					width={measures.orLineWidth}
+					height={measures.orLineHeight}
 				/>
-				<Text text={t<string>("sign_in.or_text")} textAlign="center" margin={screenSize < 1000 ? "0 20px" : "20px 0"} />
+				<Text text={t<string>("sign_in.or_text")} textAlign="center" margin={measures.orLineTextMargin} />
 				<Line
-					borderLeft={screenSize < 1000 ? "0" : "1px solid #333"}
-					borderTop={screenSize < 1000 ? "1px solid #333" : "0"}
-					width={screenSize < 1000 ? "100%" : "0"}
-					height={screenSize < 1000 ? "0" : "100%"}
+					borderLeft={measures.orLineBorderLeft}
+					borderTop={measures.orLineBorderTop}
+					width={measures.orLineWidth}
+					height={measures.orLineHeight}
 				/>
 			</OrSeperator>
-			<SignInWithSocials>
+			<SignInWithSocials justifyContent={measures.signInSocialJustifyContent} alignItems={measures.signInSocialAlignItems}>
 				<IconButton
 					hover="#EEE"
 					height="30px"
@@ -217,6 +214,7 @@ const SignInEmail = styled(Grid)`
 	display: flex;
 	flex-direction: column !important;
 	flex: 1;
+    justify-content= ${(props: IContainerProps) => props.justifyContent || "flex-start"};
 `;
 const Banner = styled(Grid)``;
 const FormContainer = styled(Grid)`
@@ -230,31 +228,44 @@ const ButtonContainer = styled(Grid)`
 const OrSeperator = styled(Grid)`
 	display: flex;
 	align-items: center;
-	flex-direction: ${(props: IContainerProps) => props.flexDirection || "column"};
-	height: ${(props: any) => props.height || "auto"};
-	width: ${(props: any) => props.width || "auto"};
-	max-width: ${(props: any) => props.maxWidth || "auto"};
-	margin: ${(props: any) => props.margin || "0"};
+	flex-direction: ${(props: OrSeperatorProps) => props.flexDirection || "column"};
+	height: ${(props: OrSeperatorProps) => props.height || "auto"};
+	width: ${(props: OrSeperatorProps) => props.width || "auto"};
+	max-width: ${(props: OrSeperatorProps) => props.maxWidth || "auto"};
+	margin: ${(props: OrSeperatorProps) => props.margin || "0"};
 `;
 const Line = styled(Grid)`
-	border-top: ${(props: ILine) => props.borderTop || "1px solid #333"};
-	border-left: ${(props: ILine) => props.borderLeft || "none"};
-	width: ${(props: ILine) => props.width || "0"};
-	height: ${(props: ILine) => props.height || "0"};
+	border-top: ${(props: LineProps) => props.borderTop || "1px solid #333"};
+	border-left: ${(props: LineProps) => props.borderLeft || "none"};
+	width: ${(props: LineProps) => props.width || "0"};
+	height: ${(props: LineProps) => props.height || "0"};
 `;
 const SignInWithSocials = styled(Grid)`
 	margin-top: 25px;
 	display: flex;
 	flex-direction: column !important;
-	justify-content: center;
-	align-items: center;
-	flex: 1;
+    justify-content= ${(props: IContainerProps) => props.justifyContent || "flex-start"};
+    align-items= ${(props: IContainerProps) => props.alignItems || "center"};
+	flex: 0.7;
 	width: 100%;
 `;
+interface IForm {
+	email: string;
+	password: string;
+}
+
 interface IContainerProps {
 	flexDirection?: string;
 	alignItems?: string;
 	justifyContent?: string;
+}
+
+interface OrSeperatorProps {
+	flexDirection?: string;
+	height?: string;
+	width?: string;
+	maxWidth?: string;
+	margin?: string;
 }
 
 interface IForm {
@@ -262,9 +273,65 @@ interface IForm {
 	password: string;
 }
 
-interface ILine {
+interface LineProps {
 	borderTop?: string;
 	borderLeft?: string;
 	width?: string;
 	height?: string;
+	margin?: string;
 }
+
+interface IDynamicMeasurements {
+	containerFlexDirection?: "row" | "column";
+	containerJustifyContent?: "center" | "space-around";
+	orSeperatorFlexDirection?: "row" | "column";
+	orSeperatorHeight?: "auto" | "30vh";
+	orSeperatorWidth?: "auto" | "100%";
+	orSeperatorMaxWidth?: "auto" | "70%";
+	orSeperatorMargin?: "0" | "0 5% 0 0";
+	orLineBorderLeft?: "0" | "1px solid #333";
+	orLineBorderTop?: "0" | "1px solid #333";
+	orLineWidth?: "100%" | "0";
+	orLineHeight?: "100%" | "0";
+	orLineTextMargin?: "20px 0" | "0 20px";
+	signInSocialAlignItems?: string;
+	signInSocialJustifyContent?: string;
+}
+
+// UTIL FUNCTION
+const measureDynamicHeights = (screenSize: number): IDynamicMeasurements => {
+	const result: IDynamicMeasurements = {};
+	if (screenSize < 1000) {
+		result.containerFlexDirection = "column";
+		result.containerJustifyContent = "center";
+		result.orSeperatorFlexDirection = "row";
+		result.orSeperatorHeight = "auto";
+		result.orSeperatorWidth = "100%";
+		result.orSeperatorMaxWidth = "70%";
+		result.orSeperatorMargin = "0";
+		result.orLineBorderLeft = "0";
+		result.orLineBorderTop = "1px solid #333";
+		result.orLineWidth = "100%";
+		result.orLineHeight = "0";
+		result.orLineTextMargin = "0 20px";
+		result.signInSocialAlignItems = "center";
+		result.signInSocialJustifyContent = "center";
+	} else {
+		result.containerFlexDirection = "row";
+		result.containerJustifyContent = "space-around";
+		result.orSeperatorFlexDirection = "column";
+		result.orSeperatorHeight = "30vh";
+		result.orSeperatorWidth = "auto";
+		result.orSeperatorMaxWidth = "auto";
+		result.orSeperatorMargin = "0";
+		result.orLineBorderLeft = "1px solid #333";
+		result.orLineBorderTop = "0";
+		result.orLineWidth = "0";
+		result.orLineHeight = "100%";
+		result.orLineTextMargin = "20px 0";
+		result.signInSocialAlignItems = "center";
+		result.signInSocialJustifyContent = "center";
+	}
+
+	return result;
+};
