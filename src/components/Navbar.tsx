@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getIsLogged } from "../features/UserSlice";
+import { getIsLogged, getUser } from "../features/UserSlice";
 import { getScreenSize } from "../features/GeneralSlice";
 import Logo from "../assets/Logo.svg";
 import ProfileIcon from "../assets/ProfileIcon.svg";
@@ -15,6 +15,7 @@ const Navbar = () => {
 	const { t } = useTranslation();
 	const is_user_logged_in = useSelector(getIsLogged);
 	const screenSize = useSelector(getScreenSize);
+	const user = useSelector(getUser);
 	const [isMenuOpened, setIsMenuOpened] = useState(false);
 
 	const renderActionButtons = () => {
@@ -30,12 +31,12 @@ const Navbar = () => {
 	const renderDesktopLoggedIn = () => {
 		return (
 			<>
-				<ActionItem container item justifyContent="center" alignItems="center">
+				<ActionItem container item justifyContent="center" alignItems="center" padding="0px 25px 0px 25px">
 					<Link to="/profile">
 						<ActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
 							<ActionIcon src={ProfileIcon} alt="Profile" />
 							<ActionText fontSize="21px" margin="5px 5px 0 5px">
-								Erhan
+								{user && user.first_name}
 							</ActionText>
 						</ActionIconAndTitleContainer>
 					</Link>
@@ -78,7 +79,7 @@ const Navbar = () => {
 							<MenuActionIconAndTitleContainer container item flexDirection="row" justifyContent="center" alignItems="center">
 								<ActionIcon src={ProfileIcon} alt="Profile" height="18px" width="18px" />
 								<ActionText fontSize="18px" margin="5px 0 0 5px">
-									Erhan
+									{user && user.first_name}
 								</ActionText>
 							</MenuActionIconAndTitleContainer>
 						</Link>
