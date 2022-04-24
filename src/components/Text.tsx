@@ -10,10 +10,11 @@ type Props = {
 	margin?: string;
 	padding?: string;
 	textAlign?: "left" | "right" | "center" | undefined;
+	lineHeight?: string;
 	hasHtml?: boolean;
 };
 
-const Text: FC<Props & { text: string }> = ({ text, fontSize, color, fontWeight, fontFamily, margin, padding, textAlign, hasHtml }) => {
+const Text: FC<Props & { text: string }> = ({ text, fontSize, color, fontWeight, fontFamily, margin, padding, textAlign, lineHeight, hasHtml }) => {
 	if (!hasHtml) {
 		return (
 			<TextContainer
@@ -24,6 +25,7 @@ const Text: FC<Props & { text: string }> = ({ text, fontSize, color, fontWeight,
 				margin={margin}
 				padding={padding}
 				textAlign={textAlign}
+				lineHeight={lineHeight}
 			>
 				{text}
 			</TextContainer>
@@ -54,6 +56,7 @@ const TextContainer = styled(Grid)`
 	margin: ${(props: Props) => props.margin || "0 0 0 0"};
 	padding: ${(props: Props) => props.padding || "0 0 0 0"};
 	text-align: ${(props: Props) => props.textAlign || "left"};
+	line-height: ${(props: Props) => props.lineHeight || "normal"};
 	width: auto;
 `;
 

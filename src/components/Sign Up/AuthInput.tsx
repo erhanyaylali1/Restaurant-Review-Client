@@ -83,7 +83,7 @@ const Container = styled(Grid)`
 	margin-inline: auto;
 	& div {
 		border-radius: 3px !important;
-		padding: 2px 5px !important;
+		padding: 2px 0px !important;
 	}
 	& label {
 		margin-left: 10px;

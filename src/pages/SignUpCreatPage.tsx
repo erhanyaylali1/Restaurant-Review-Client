@@ -152,7 +152,7 @@ const SignUpCreatPage = () => {
 					<ButtonContainer>
 						<Button
 							type="submit"
-							text="Sign Up"
+							text={t<string>("sign_up_create.create_account_button_text")}
 							backgroundColor="#20438C"
 							hover="#4b659a"
 							color="#fff"
@@ -162,6 +162,7 @@ const SignUpCreatPage = () => {
 							maxWidth="450px !important"
 							margin="20px 0 15px 0"
 							borderRadius="3px"
+							padding="5px 10px"
 							textAlign="center"
 						/>
 						<IconButton
@@ -171,6 +172,7 @@ const SignUpCreatPage = () => {
 							fontFamily="Markazi Text"
 							fontSize="22px"
 							color="#20438C"
+							padding="5px 10px"
 							textAlign="center"
 							callBack={navigateToSignIn}
 						/>
