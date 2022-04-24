@@ -23,7 +23,7 @@ const SignUpPage = () => {
 
 	const redirect_to_the_create_account = () => navigate("/sign-up-create");
 	const sign_up_with_google = () => {};
-	const measuremenets: IMeasurements = calculateDynamicMeasurements(screenSize);
+	const measuremenets: IMeasurements = measureDynamicHeights(screenSize);
 
 	return (
 		<Container flexDirection={measuremenets.flexDirection} alignItems={measuremenets.alignItems} justifyContent={measuremenets.justifyContent}>
@@ -158,7 +158,7 @@ interface IButtonProps {
 
 // UTILS
 
-const calculateDynamicMeasurements = (screenSize: number): IMeasurements => {
+const measureDynamicHeights = (screenSize: number): IMeasurements => {
 	const measuremenets: IMeasurements = {
 		image_height: "0px",
 		image_text_font_size: "0px",
