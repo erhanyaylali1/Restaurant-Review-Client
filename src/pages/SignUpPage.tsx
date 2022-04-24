@@ -30,7 +30,7 @@ const SignUpPage = () => {
 			<ContainerChild margin={measuremenets.containerMargin}>
 				<Grid>
 					<BannerImage
-						text="Review Restourants"
+						text={t<string>("sign_up.image_text")}
 						image={BannerFirstImage}
 						height={measuremenets.image_height}
 						fontSize={measuremenets.image_text_font_size}
@@ -42,18 +42,12 @@ const SignUpPage = () => {
 					<Text
 						color="#000"
 						textAlign="center"
-						text="Welcome to Review!"
+						text={t<string>("sign_up.welcome_title")}
 						fontSize="35px"
 						fontFamily="Markazi Text"
-						margin="20px 0 -15px 0"
+						margin="20px 0 0px 0"
 					/>
-					<Text
-						color="#000"
-						textAlign="center"
-						text="You can find best restourants, or rate them"
-						fontSize="22px"
-						fontFamily="Markazi Text"
-					/>
+					<Text color="#000" textAlign="center" text={t<string>("sign_up.welcome_text")} fontSize="22px" fontFamily="Markazi Text" />
 				</Grid>
 				<ButtonContainer width={measuremenets.button_container_width} margin={measuremenets.button_container_margin}>
 					<IconButton

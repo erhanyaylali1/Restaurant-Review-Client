@@ -22,7 +22,7 @@ i18n.use(LanguageDetector)
 					sign_up: {
 						image_text: "Review Restourants",
 						welcome_title: "Welcome to Review!",
-						welcome_text: "You can find best restourants, or rate them.",
+						welcome_text: "You can find best restourants, or rate them",
 						sign_up_with_google: "Sign up with Google.",
 						sign_up_with_facebook: "Sign up with Facebook",
 						sign_up: "Create a new account",
@@ -43,6 +43,16 @@ i18n.use(LanguageDetector)
 						password_confirmation_placeholder: "Confirm your password",
 						create_account_button_text: "Sign Up",
 						sign_in_button_text: "Have an account? Sign In.",
+					},
+					sign_in: {
+						sign_in_title: "Sign In to Review!",
+						banner_text: "Welcome Back! You can find best restourants here, rate them",
+						forgot_password_text: "Forgot Password?",
+						or_text: "or",
+						sign_in: "Sign In",
+						sign_up_with_google: "Sign up with Google.",
+						sign_up_with_facebook: "Sign up with Facebook",
+						sign_up: "Don't have an account? Sign In",
 					},
 					validation_messages: {
 						first_name: "First Name is required",
@@ -89,6 +99,16 @@ i18n.use(LanguageDetector)
 						password_confirmation_placeholder: "Lütfen şifrenizi onaylayınız",
 						create_account_button_text: "Üye Ol",
 						sign_in_button_text: "Hesabın var mı? Giriş yap",
+					},
+					sign_in: {
+						sign_in_title: "Review'a giriş yap!",
+						banner_text: "Hoşgeldiniz! Burada en iyi restoranları bulup, puanlayabilirsiniz",
+						forgot_password_text: "Şifremi unuttum?",
+						or_text: "veya",
+						sign_in: "Giriş Yap",
+						sign_up_with_google: "Google ile giriş yap",
+						sign_up_with_facebook: "Facebook ile giriş yap",
+						sign_up: "Hesabınız yok mu? Üye olun",
 					},
 					validation_messages: {
 						first_name: "İsim boş olamaz",
