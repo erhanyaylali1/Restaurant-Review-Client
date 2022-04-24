@@ -228,17 +228,17 @@ const ButtonContainer = styled(Grid)`
 const OrSeperator = styled(Grid)`
 	display: flex;
 	align-items: center;
-	flex-direction: ${(props: IContainerProps) => props.flexDirection || "column"};
-	height: ${(props: any) => props.height || "auto"};
-	width: ${(props: any) => props.width || "auto"};
-	max-width: ${(props: any) => props.maxWidth || "auto"};
-	margin: ${(props: any) => props.margin || "0"};
+	flex-direction: ${(props: OrSeperatorProps) => props.flexDirection || "column"};
+	height: ${(props: OrSeperatorProps) => props.height || "auto"};
+	width: ${(props: OrSeperatorProps) => props.width || "auto"};
+	max-width: ${(props: OrSeperatorProps) => props.maxWidth || "auto"};
+	margin: ${(props: OrSeperatorProps) => props.margin || "0"};
 `;
 const Line = styled(Grid)`
-	border-top: ${(props: ILine) => props.borderTop || "1px solid #333"};
-	border-left: ${(props: ILine) => props.borderLeft || "none"};
-	width: ${(props: ILine) => props.width || "0"};
-	height: ${(props: ILine) => props.height || "0"};
+	border-top: ${(props: LineProps) => props.borderTop || "1px solid #333"};
+	border-left: ${(props: LineProps) => props.borderLeft || "none"};
+	width: ${(props: LineProps) => props.width || "0"};
+	height: ${(props: LineProps) => props.height || "0"};
 `;
 const SignInWithSocials = styled(Grid)`
 	margin-top: 25px;
@@ -249,10 +249,23 @@ const SignInWithSocials = styled(Grid)`
 	flex: 0.7;
 	width: 100%;
 `;
+interface IForm {
+	email: string;
+	password: string;
+}
+
 interface IContainerProps {
 	flexDirection?: string;
 	alignItems?: string;
 	justifyContent?: string;
+}
+
+interface OrSeperatorProps {
+	flexDirection?: string;
+	height?: string;
+	width?: string;
+	maxWidth?: string;
+	margin?: string;
 }
 
 interface IForm {
@@ -260,7 +273,7 @@ interface IForm {
 	password: string;
 }
 
-interface ILine {
+interface LineProps {
 	borderTop?: string;
 	borderLeft?: string;
 	width?: string;
