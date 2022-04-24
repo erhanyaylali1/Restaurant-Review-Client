@@ -7,9 +7,12 @@ export interface IUserSlice {
 }
 
 export interface IUser {
-	name?: string;
-	email?: string;
-	userId?: string;
+	first_name: string;
+	last_name: string;
+	email: string;
+	token?: string;
+	password?: string;
+	image?: string;
 }
 
 const initialState: IUserSlice = {

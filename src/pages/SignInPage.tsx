@@ -11,14 +11,19 @@ import AuthInput from "../components/Sign Up/AuthInput";
 import Button from "../components/Button";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getScreenSize } from "../features/GeneralSlice";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { signIn } from "../features/UserSlice";
+import apiCall, { ISignInResponse, IUserSignIn } from "../utils/apiCall";
+import { message } from "antd";
 
 const SignInPage = () => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
-	const sign_up_with_google = () => {};
 	const navigateToSignUp = () => navigate("/sign-up");
 	const screenSize = useSelector(getScreenSize);
 	const measures = measureDynamicHeights(screenSize);
@@ -33,8 +38,19 @@ const SignInPage = () => {
 		password: "",
 	};
 
-	const onSubmit = (values: any) => {
-		console.log(values);
+	const onSubmit = async (values: any) => {
+		const user: IUserSignIn = {
+			email: values.email,
+			password: values.password,
+		};
+		await apiCall
+			.sign_in(user)
+			.then((response: ISignInResponse) => {
+				dispatch(signIn(response.data));
+				navigate("/profile");
+				message.success(t<string>("sign_up.sign_up_response_success_message"));
+			})
+			.catch((err) => message.error(err.response.data.message));
 	};
 
 	const { handleSubmit, values, handleChange, handleBlur, errors, touched } = useFormik({
@@ -42,6 +58,40 @@ const SignInPage = () => {
 		validationSchema,
 		onSubmit,
 	});
+
+	const handleGoogleSignIn = async (googleData: any) => {
+		if (!googleData.error) {
+			const user: IUserSignIn = {
+				email: googleData.profileObj.email,
+				token: googleData.googleId,
+			};
+			await apiCall
+				.sign_in(user)
+				.then((response: ISignInResponse) => {
+					dispatch(signIn(response.data));
+					navigate("/profile");
+					message.success(t<string>("sign_up.sign_up_response_success_message"));
+				})
+				.catch(() => message.error(t<string>("sign_up.sign_up_response_error_message")));
+		}
+	};
+
+	const handleFacebookSignIn = async (facebookData: any) => {
+		if (!facebookData.error) {
+			const user: IUserSignIn = {
+				email: facebookData.email,
+				token: facebookData.id,
+			};
+			await apiCall
+				.sign_in(user)
+				.then((response: ISignInResponse) => {
+					dispatch(signIn(response.data));
+					navigate("/profile");
+					message.success(t<string>("sign_up.sign_up_response_success_message"));
+				})
+				.catch(() => message.error(t<string>("sign_up.sign_up_response_error_message")));
+		}
+	};
 
 	return (
 		<Container flexDirection={measures.containerFlexDirection} justifyContent={measures.containerJustifyContent} alignItems="center">
@@ -147,39 +197,60 @@ const SignInPage = () => {
 				/>
 			</OrSeperator>
 			<SignInWithSocials justifyContent={measures.signInSocialJustifyContent} alignItems={measures.signInSocialAlignItems}>
-				<IconButton
-					hover="#EEE"
-					height="30px"
-					width="30px"
-					containerWidth="90%"
-					maxWidth="450px !important"
-					iconMargin="0 15px 0 0"
-					padding="10px 0"
-					borderRadius="3px"
-					boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
-					text={t<string>("sign_in.sign_up_with_google")}
-					callBack={sign_up_with_google}
-					icon={GoogleIcon}
-					fontFamily="Markazi Text"
-					fontSize="22px"
-				/>
-				<IconButton
-					hover="#EEE"
-					height="30px"
-					width="30px"
-					maxWidth="450px !important"
-					containerWidth="90%"
-					iconMargin="0 15px 0 0"
-					padding="10px 0"
-					borderRadius="3px"
-					margin="20px 0 20px 0"
-					boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
-					text={t<string>("sign_in.sign_up_with_facebook")}
-					callBack={sign_up_with_google}
-					icon={FacebookIcon}
-					fontFamily="Markazi Text"
-					fontSize="22px"
-				/>
+				{process.env.REACT_APP_GOOGLE_CLIENT_ID && (
+					<GoogleLogin
+						clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+						buttonText="Log in with Google"
+						onSuccess={handleGoogleSignIn}
+						render={(renderProps) => (
+							<IconButton
+								hover="#EEE"
+								height="30px"
+								width="30px"
+								containerWidth="90%"
+								maxWidth="450px !important"
+								iconMargin="0 15px 0 0"
+								padding="10px 0"
+								borderRadius="3px"
+								boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
+								text={t<string>("sign_in.sign_up_with_google")}
+								callBack={renderProps.onClick}
+								icon={GoogleIcon}
+								fontFamily="Markazi Text"
+								fontSize="22px"
+							/>
+						)}
+					/>
+				)}
+				{process.env.REACT_APP_FACEBOOK_APP_ID && (
+					<FacebookLogin
+						appId={process.env.REACT_APP_FACEBOOK_APP_ID}
+						autoLoad={false}
+						fields="name,email,picture"
+						status={false}
+						callback={handleFacebookSignIn}
+						render={(renderProps) => (
+							<IconButton
+								hover="#EEE"
+								height="30px"
+								width="30px"
+								maxWidth="450px !important"
+								containerWidth="90%"
+								iconMargin="0 15px 0 0"
+								padding="10px 0"
+								borderRadius="3px"
+								margin="20px 0 20px 0"
+								boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
+								text={t<string>("sign_in.sign_up_with_facebook")}
+								callBack={renderProps.onClick}
+								icon={FacebookIcon}
+								fontFamily="Markazi Text"
+								fontSize="22px"
+							/>
+						)}
+					/>
+				)}
+
 				<IconButton
 					margin="0 0 0 0"
 					borderRadius="3px"
@@ -191,7 +262,7 @@ const SignInPage = () => {
 					fontSize="22px"
 					color="#20438C"
 					textAlign="center"
-					callBack={sign_up_with_google}
+					callBack={navigateToSignUp}
 				/>
 			</SignInWithSocials>
 		</Container>

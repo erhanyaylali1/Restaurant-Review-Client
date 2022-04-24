@@ -27,6 +27,8 @@ i18n.use(LanguageDetector)
 						sign_up_with_facebook: "Sign up with Facebook",
 						sign_up: "Create a new account",
 						sign_in: "Have an account? Sign In",
+						sign_up_response_success_message: "Successfully Signed Up",
+						sign_up_response_error_message: "Email is already taken",
 					},
 					sign_up_create: {
 						header_title: "Lets Get Started!",
@@ -79,10 +81,12 @@ i18n.use(LanguageDetector)
 						image_text: "Restoranları İnceleyin",
 						welcome_title: "Review'e Hoşgeldiniz!",
 						welcome_text: "En iyi restoranları bulabilir, veya puanlayabilirsiniz.",
-						sign_up_with_google: "Google ile giriş yap",
-						sign_up_with_facebook: "Facebook ile giriş yap",
+						sign_up_with_google: "Google ile üye ol",
+						sign_up_with_facebook: "Facebook ile üye ol",
 						sign_up: "Yeni bir hesap oluştur",
 						sign_in: "Hesabın var mı? Giriş yap",
+						sign_up_response_success_message: "Başarıyla Üye Olundu",
+						sign_up_response_error_message: "Bu email daha önceden kayıt edilmiş",
 					},
 					sign_up_create: {
 						header_title: "Hazırsan Başlayalım!",

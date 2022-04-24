@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { getIsLogged } from "../features/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getIsLogged, signIn } from "../features/UserSlice";
 import { useNavigate } from "react-router-dom";
 import Text from "../components/Text";
 import { useFormik } from "formik";
@@ -14,9 +14,12 @@ import IconButton from "../components/IconButton";
 import { getScreenSize } from "../features/GeneralSlice";
 import SecondBannerImage from "../assets/SecondBannerImage.jpeg";
 import BannerImage from "../components/Sign Up/BannerImage";
+import apiCall, { ISignInResponse, IUser } from "../utils/apiCall";
+import { message } from "antd";
 
 const SignUpCreatPage = () => {
 	const { t } = useTranslation();
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const is_user_logged_in: boolean = useSelector(getIsLogged);
 	const screenSize = useSelector(getScreenSize);
@@ -40,8 +43,21 @@ const SignUpCreatPage = () => {
 		password_confirmation: "",
 	};
 
-	const onSubmit = (values: any) => {
-		console.log(values);
+	const onSubmit = async (values: IForm) => {
+		const user: IUser = {
+			first_name: values.first_name,
+			last_name: values.last_name,
+			email: values.email,
+			password: values.password,
+		};
+		await apiCall
+			.sign_up(user)
+			.then((response: ISignInResponse) => {
+				dispatch(signIn(response.data));
+				navigate("/profile");
+				message.success(t<string>("sign_up.sign_up_response_success_message"));
+			})
+			.catch(() => message.error(t<string>("sign_up.sign_up_response_error_message")));
 	};
 
 	const { handleSubmit, values, handleChange, handleBlur, errors, touched } = useFormik({

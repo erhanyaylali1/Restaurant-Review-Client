@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { getIsLogged } from "../features/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getIsLogged, signIn } from "../features/UserSlice";
 import { getScreenSize } from "../features/GeneralSlice";
 import BannerFirstImage from "../assets/FirstBannerImage.jpg";
 import BannerImage from "../components/Sign Up/BannerImage";
@@ -14,21 +14,23 @@ import FacebookIcon from "../assets/FacebookIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import apiCall, { IUser } from "../utils/apiCall";
+import apiCall, { ISignInResponse, IUser } from "../utils/apiCall";
+import { message } from "antd";
 
 const SignUpPage = () => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const is_user_logged_in: boolean = useSelector(getIsLogged);
 	const screenSize: number = useSelector(getScreenSize);
 
 	if (is_user_logged_in) navigate("/profile");
 
 	const redirect_to_the_create_account = () => navigate("/sign-up-create");
-	const sign_up_with_google = () => {};
+	const redirect_to_sign_in = () => navigate("/sign-in");
 	const measuremenets: IMeasurements = measureDynamicHeights(screenSize);
 
-	const handleGoogleLogin = async (googleData: any) => {
+	const handleGoogleSignUp = async (googleData: any) => {
 		if (!googleData.error) {
 			const user: IUser = {
 				first_name: googleData.profileObj.givenName,
@@ -37,12 +39,18 @@ const SignUpPage = () => {
 				token: googleData.googleId,
 				image: googleData.profileObj.imageUrl,
 			};
-			await apiCall.sign_in_with_socials(user).then((res) => console.log(res));
+			await apiCall
+				.sign_up(user)
+				.then((response: ISignInResponse) => {
+					dispatch(signIn(response.data));
+					navigate("/profile");
+					message.success(t<string>("sign_up.sign_up_response_success_message"));
+				})
+				.catch(() => message.error(t<string>("sign_up.sign_up_response_error_message")));
 		}
 	};
 
-	const handleFacebookLogin = async (facebookData: any) => {
-		console.log(facebookData);
+	const handleFacebookSignUp = async (facebookData: any) => {
 		if (!facebookData.error) {
 			const user: IUser = {
 				first_name: facebookData.name.split(" ")[0],
@@ -51,7 +59,14 @@ const SignUpPage = () => {
 				token: facebookData.id,
 				image: facebookData.picture.data.url,
 			};
-			await apiCall.sign_in_with_socials(user).then((res) => console.log(res));
+			await apiCall
+				.sign_up(user)
+				.then((response: ISignInResponse) => {
+					dispatch(signIn(response.data));
+					navigate("/profile");
+					message.success(t<string>("sign_up.sign_up_response_success_message"));
+				})
+				.catch(() => message.error(t<string>("sign_up.sign_up_response_error_message")));
 		}
 	};
 
@@ -84,8 +99,7 @@ const SignUpPage = () => {
 						<GoogleLogin
 							clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
 							buttonText="Log in with Google"
-							onSuccess={handleGoogleLogin}
-							onFailure={handleGoogleLogin}
+							onSuccess={handleGoogleSignUp}
 							render={(renderProps) => (
 								<IconButton
 									hover="#EEE"
@@ -110,7 +124,8 @@ const SignUpPage = () => {
 							appId={process.env.REACT_APP_FACEBOOK_APP_ID}
 							autoLoad={false}
 							fields="name,email,picture"
-							callback={handleFacebookLogin}
+							status={false}
+							callback={handleFacebookSignUp}
 							render={(renderProps) => (
 								<IconButton
 									hover="#EEE"
@@ -154,7 +169,7 @@ const SignUpPage = () => {
 							fontSize="22px"
 							color="#20438C"
 							textAlign="center"
-							callBack={sign_up_with_google}
+							callBack={redirect_to_sign_in}
 						/>
 					</Grid>
 				</ButtonContainer>
