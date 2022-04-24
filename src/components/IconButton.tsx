@@ -27,7 +27,7 @@ type ButtonContainerProps = {
 type Props = {
 	text: string;
 	icon?: any;
-	callBack: () => void;
+	callBack: any;
 };
 
 const IconButton: FC<ButtonContainerProps & Props> = ({

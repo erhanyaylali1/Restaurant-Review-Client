@@ -12,6 +12,9 @@ import IconButton from "../components/IconButton";
 import GoogleIcon from "../assets/GoogleIcon.svg";
 import FacebookIcon from "../assets/FacebookIcon.svg";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import apiCall, { IUser } from "../utils/apiCall";
 
 const SignUpPage = () => {
 	const { t } = useTranslation();
@@ -24,6 +27,33 @@ const SignUpPage = () => {
 	const redirect_to_the_create_account = () => navigate("/sign-up-create");
 	const sign_up_with_google = () => {};
 	const measuremenets: IMeasurements = measureDynamicHeights(screenSize);
+
+	const handleGoogleLogin = async (googleData: any) => {
+		if (!googleData.error) {
+			const user: IUser = {
+				first_name: googleData.profileObj.givenName,
+				last_name: googleData.profileObj.familyName,
+				email: googleData.profileObj.email,
+				token: googleData.googleId,
+				image: googleData.profileObj.imageUrl,
+			};
+			await apiCall.sign_in_with_socials(user).then((res) => console.log(res));
+		}
+	};
+
+	const handleFacebookLogin = async (facebookData: any) => {
+		console.log(facebookData);
+		if (!facebookData.error) {
+			const user: IUser = {
+				first_name: facebookData.name.split(" ")[0],
+				last_name: facebookData.name.split(" ")[1],
+				email: facebookData.email,
+				token: facebookData.id,
+				image: facebookData.picture.data.url,
+			};
+			await apiCall.sign_in_with_socials(user).then((res) => console.log(res));
+		}
+	};
 
 	return (
 		<Container flexDirection={measuremenets.flexDirection} alignItems={measuremenets.alignItems} justifyContent={measuremenets.justifyContent}>
@@ -50,35 +80,57 @@ const SignUpPage = () => {
 					<Text color="#000" textAlign="center" text={t<string>("sign_up.welcome_text")} fontSize="22px" fontFamily="Markazi Text" />
 				</Grid>
 				<ButtonContainer width={measuremenets.button_container_width} margin={measuremenets.button_container_margin}>
-					<IconButton
-						hover="#EEE"
-						height="30px"
-						width="30px"
-						iconMargin="0 15px 0 0"
-						padding="10px 0"
-						borderRadius="3px"
-						boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
-						text={t<string>("sign_up.sign_up_with_google")}
-						callBack={sign_up_with_google}
-						icon={GoogleIcon}
-						fontFamily="Markazi Text"
-						fontSize="22px"
-					/>
-					<IconButton
-						hover="#EEE"
-						height="30px"
-						width="30px"
-						iconMargin="0 15px 0 0"
-						padding="10px 0"
-						borderRadius="3px"
-						margin="20px 0 20px 0"
-						boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
-						text={t<string>("sign_up.sign_up_with_facebook")}
-						callBack={sign_up_with_google}
-						icon={FacebookIcon}
-						fontFamily="Markazi Text"
-						fontSize="22px"
-					/>
+					{process.env.REACT_APP_GOOGLE_CLIENT_ID && (
+						<GoogleLogin
+							clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+							buttonText="Log in with Google"
+							onSuccess={handleGoogleLogin}
+							onFailure={handleGoogleLogin}
+							render={(renderProps) => (
+								<IconButton
+									hover="#EEE"
+									height="30px"
+									width="30px"
+									iconMargin="0 15px 0 0"
+									padding="10px 0"
+									borderRadius="3px"
+									margin="20px 0 20px 0"
+									boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
+									text={t<string>("sign_up.sign_up_with_google")}
+									callBack={renderProps.onClick}
+									icon={GoogleIcon}
+									fontFamily="Markazi Text"
+									fontSize="22px"
+								/>
+							)}
+						/>
+					)}
+					{process.env.REACT_APP_FACEBOOK_APP_ID && (
+						<FacebookLogin
+							appId={process.env.REACT_APP_FACEBOOK_APP_ID}
+							autoLoad={false}
+							fields="name,email,picture"
+							callback={handleFacebookLogin}
+							render={(renderProps) => (
+								<IconButton
+									hover="#EEE"
+									height="30px"
+									width="30px"
+									iconMargin="0 15px 0 0"
+									padding="10px 0"
+									borderRadius="3px"
+									margin="20px 0 20px 0"
+									boxShadow="0px 2px 4px 0px rgba(0,0,0,0.25)"
+									text={t<string>("sign_up.sign_up_with_facebook")}
+									callBack={renderProps.onClick}
+									icon={FacebookIcon}
+									fontFamily="Markazi Text"
+									fontSize="22px"
+								/>
+							)}
+						/>
+					)}
+
 					<IconButton
 						hover="#EEE"
 						height="30px"
