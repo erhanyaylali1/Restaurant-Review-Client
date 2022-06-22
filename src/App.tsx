@@ -10,30 +10,30 @@ import SignUpPage from "./pages/SignUpPage";
 import SignUpCreatPage from "./pages/SignUpCreatPage";
 
 const App = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		updateDimensions();
-		window.addEventListener("resize", updateDimensions);
-		return () => window.removeEventListener("resize", updateDimensions);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-	const updateDimensions = () => {
-		dispatch(setScreenSize(window.innerWidth));
-	};
+  const updateDimensions = () => {
+    dispatch(setScreenSize(window.innerWidth));
+  };
 
-	return (
-		<>
-			<Navbar />
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/sign-in" element={<SignInPage />} />
-				<Route path="/sign-up" element={<SignUpPage />} />
-				<Route path="/sign-up-create" element={<SignUpCreatPage />} />
-			</Routes>
-		</>
-	);
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/sign-up-create" element={<SignUpCreatPage />} />
+      </Routes>
+    </>
+  );
 };
 
 export default App;
