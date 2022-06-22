@@ -4,12 +4,12 @@ import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getIsLogged, getUser } from "../features/UserSlice";
-import { getScreenSize } from "../features/GeneralSlice";
-import Logo from "../assets/Logo.svg";
-import ProfileIcon from "../assets/ProfileIcon.svg";
-import SettingIcon from "../assets/SettingIcon.svg";
-import SignOutIcon from "../assets/SignOutIcon.svg";
+import { getIsLogged, getUser } from "../../features/UserSlice";
+import { getScreenSize } from "../../features/GeneralSlice";
+import Logo from "../../assets/Logo.svg";
+import ProfileIcon from "../../assets/ProfileIcon.svg";
+import SettingIcon from "../../assets/SettingIcon.svg";
+import SignOutIcon from "../../assets/SignOutIcon.svg";
 
 const Navbar = () => {
   const { t } = useTranslation();
