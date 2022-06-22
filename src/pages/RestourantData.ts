@@ -1,16 +1,18 @@
-import { IRestourantPageResponse } from "../interfaces/IRestourant";
+import { IRestourantPageResponse } from "../../../Restaurant-Review-Client/src/interfaces/IRestourant";
 import profilePhoto from "../assets/RestourantProfile.png";
+import logo from "../assets/Logo.png";
 import photo1 from "../assets/Photo 1.png";
 import photo2 from "../assets/Photo 2.png";
 import photo3 from "../assets/Photo 3.png";
 import photo4 from "../assets/Photo 4.png";
 import photo5 from "../assets/Photo 5.png";
-import photo6 from "../assets/Photo 6.png";
 
 const restourantData: IRestourantPageResponse = {
   _id: "fjdsr23jadf3",
   name: "Happy Moons Moda Sahili",
   profilePhoto: profilePhoto,
+  logo: logo,
+  isOpen: true,
   facility: {
     rate: 4.3,
     price: 52,
@@ -45,14 +47,14 @@ const restourantData: IRestourantPageResponse = {
       },
     },
     tags: [
-      "Sigara İçilebilir",
-      "Wifi",
-      "Deniz Kenarı",
-      "Otopark",
-      "Vale",
-      "Deniz Manzarası",
+      { _id: 123, name: "Sigara İçilebilir" },
+      { _id: 124, name: "Wifi" },
+      { _id: 125, name: "Deniz Kenarı" },
+      { _id: 126, name: "Otopark" },
+      { _id: 127, name: "Vale" },
+      { _id: 128, name: "Deniz Manzarası" },
     ],
-    photos: [photo1, photo2, photo3, photo4, photo5, photo6],
+    photos: [photo1, photo2, photo3, photo4, photo5, photo5],
     contact: {
       address: {
         city: "İstanbul",

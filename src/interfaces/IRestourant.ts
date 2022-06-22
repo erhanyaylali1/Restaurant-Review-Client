@@ -1,7 +1,9 @@
 export interface IRestourantPageResponse {
   _id: string;
   name: string;
-  profilePhoto: File;
+  logo: string;
+  profilePhoto: string;
+  isOpen: boolean;
   facility: {
     rate: number | undefined;
     price: number | undefined;
@@ -35,8 +37,8 @@ export interface IRestourantPageResponse {
         end: string | undefined;
       };
     };
-    tags: string[];
-    photos: File[];
+    tags: ITag[];
+    photos: string[];
     contact: {
       address: {
         city: string;
@@ -47,3 +49,17 @@ export interface IRestourantPageResponse {
     };
   };
 }
+
+export interface ITag {
+  _id: number;
+  name: string;
+}
+
+export type days =
+  | "monday"
+  | "tuesday"
+  | "wednesday"
+  | "thursday"
+  | "friday"
+  | "saturday"
+  | "sunday";

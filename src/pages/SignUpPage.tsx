@@ -146,7 +146,7 @@ const SignUpPage = () => {
               fields="name,email,picture"
               status={false}
               callback={handleFacebookSignUp}
-              render={(renderProps) => (
+              render={(renderProps: any) => (
                 <IconButton
                   hover="#EEE"
                   height="30px"

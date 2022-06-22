@@ -13,6 +13,11 @@ declare module "*.jpeg" {
 }
 
 declare module "*.png" {
-  const value: any;
-  export default value;
+  const content: any;
+  export default content;
+}
+
+declare module "react-facebook-login/dist/facebook-login-render-props" {
+  const content: any;
+  export default any;
 }
