@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -7,8 +6,8 @@ import { getIsLogged, signIn } from "../features/UserSlice";
 import { getScreenSize } from "../features/GeneralSlice";
 import BannerFirstImage from "../assets/FirstBannerImage.jpg";
 import BannerImage from "../components/Sign Up/BannerImage";
-import Text from "../components/Text";
-import IconButton from "../components/IconButton";
+import Text from "../components/shared/Text";
+import IconButton from "../components/shared/IconButton";
 import GoogleIcon from "../assets/GoogleIcon.svg";
 import FacebookIcon from "../assets/FacebookIcon.svg";
 import { useNavigate } from "react-router-dom";
