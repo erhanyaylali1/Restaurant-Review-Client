@@ -2,89 +2,91 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow&family=Markazi+Text&family=Merriweather&family=Mina:wght@400;700&family=Mogra&family=Montserrat&display=swap");
 
 body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 #close-icon {
-	width: 35px;
-	height: 100%;
-	margin-right: 10px;
-	display: flex;
-	align-items: center;
-	transform: rotate(0deg);
-	transition: 0.5s ease-in-out;
-	cursor: pointer;
+  width: 35px;
+  height: 100%;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 #close-icon span {
-	display: block;
-	position: absolute;
-	height: 4px;
-	width: 100%;
-	background: white;
-	border-radius: 3px;
-	opacity: 1;
-	left: 0;
-	transform: rotate(0deg);
-	transition: 0.25s ease-in-out;
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: white;
+  border-radius: 3px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
 }
 
 #close-icon span:nth-child(1) {
-	top: 18px;
+  top: 18px;
 }
 
 #close-icon span:nth-child(2),
 #close-icon span:nth-child(3) {
-	top: 28px;
+  top: 28px;
 }
 
 #close-icon span:nth-child(4) {
-	top: 38px;
+  top: 38px;
 }
 
 #close-icon.open span:nth-child(1) {
-	top: 18px;
-	width: 0%;
-	left: 50%;
+  top: 18px;
+  width: 0%;
+  left: 50%;
 }
 
 #close-icon.open span:nth-child(2) {
-	transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 #close-icon.open span:nth-child(3) {
-	transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 #close-icon.open span:nth-child(4) {
-	top: 18px;
-	width: 0%;
-	left: 50%;
+  top: 18px;
+  width: 0%;
+  left: 50%;
 }
 
 #close-icon.open div#open-menu {
-	visibility: visible;
-	height: auto;
-	opacity: 1;
+  visibility: visible;
+  height: auto;
+  opacity: 1;
 }
 #close-icon div#open-menu {
-	position: absolute;
-	opacity: 0;
-	visibility: hidden;
-	border-radius: 3px;
-	height: 0;
-	overflow: hidden;
-	top: 65px;
-	right: 0px;
-	background-color: #ff4040;
-	transition: all 0.35s ease-in-out;
-	z-index: 99999;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 3px;
+  height: 0;
+  overflow: hidden;
+  top: 65px;
+  right: 0px;
+  background-color: #ff4040;
+  transition: all 0.35s ease-in-out;
+  z-index: 99999;
 }
