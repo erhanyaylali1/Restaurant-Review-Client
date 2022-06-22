@@ -253,7 +253,7 @@ const SignInPage = () => {
             fields="name,email,picture"
             status={false}
             callback={handleFacebookSignIn}
-            render={(renderProps) => (
+            render={(renderProps: any) => (
               <IconButton
                 hover="#EEE"
                 height="30px"

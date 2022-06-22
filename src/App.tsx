@@ -8,6 +8,7 @@ import Navbar from "./components/shared/Navbar";
 import "./app.css";
 import SignUpPage from "./pages/SignUpPage";
 import SignUpCreatPage from "./pages/SignUpCreatPage";
+import RestourantPage from "./pages/RestourantPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/sign-up-create" element={<SignUpCreatPage />} />
-        <Route path="/restourants/:id" element={<SignUpCreatPage />} />
+        <Route path="/restourants/:id" element={<RestourantPage />} />
       </Routes>
     </>
   );
