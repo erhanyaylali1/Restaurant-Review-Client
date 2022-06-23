@@ -1,11 +1,13 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import Modal from "@mui/material/Modal";
 import { getScreenSize } from "../../features/GeneralSlice";
 import { days, IRestourantPageResponse } from "../../interfaces/IRestourant";
 import Text from "../shared/Text";
 import Map from "./Map";
+import ImageModal from "../shared/ImageModal";
 
 type Props = {
   data: IRestourantPageResponse;
@@ -15,6 +17,8 @@ const FacilityTab: FC<Props> = ({ data }) => {
   const { t } = useTranslation();
   const screenSize = useSelector(getScreenSize);
   const styles: IDynamicStyles = calculateDynamicStyles(screenSize);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
 
   const renderHours = () => {
     return Object.keys(data.facility.hours).map((hours_key) => {
@@ -58,6 +62,11 @@ const FacilityTab: FC<Props> = ({ data }) => {
     ));
   };
 
+  const displayImageModal = (index) => {
+    setShowImageModal(true);
+    setImageIndex(index);
+  };
+
   const renderPhotos = () => {
     return data.facility.photos
       .slice(0, styles.image_strict_number)
@@ -66,6 +75,7 @@ const FacilityTab: FC<Props> = ({ data }) => {
           return (
             <div
               key={photo}
+              onClick={displayImageModal.bind(this, index)}
               className={`col-sm-6 col-md-4 col-lg-4 m-0 p-0 ${styles.photosMarginBottom} ${styles.photosPaddingInline}`}
               style={{ position: "relative" }}
             >
@@ -84,6 +94,7 @@ const FacilityTab: FC<Props> = ({ data }) => {
           return (
             <div
               key={photo}
+              onClick={displayImageModal.bind(this, index)}
               className={`col-sm-6 col-md-4 col-lg-4 m-0 p-0 ${styles.photosMarginBottom} ${styles.photosPaddingInline}`}
             >
               <Image src={photo} alt={`restourant-photos-${index}`} />
@@ -228,10 +239,10 @@ const FacilityTab: FC<Props> = ({ data }) => {
               <div className="col-sm-12 col-md-8">
                 <Map address={data.facility.contact.address.full_address} />
               </div>
+              {/* ADDRESS */}
               <div
                 className={`col-sm-12 col-md-4 ${styles.address_margin_top}`}
               >
-                {/* ADDRESS */}
                 <div>
                   <Text
                     text={t<string>("restourant_page.facilities.address")}
@@ -255,19 +266,22 @@ const FacilityTab: FC<Props> = ({ data }) => {
                     fontFamily="Montserrat"
                     fontWeight="600"
                   />
-                  <Text
-                    text={data.facility.contact.address.phone}
-                    fontSize="16px"
-                    fontFamily="Montserrat"
-                    fontWeight="400"
-                    margin="5px 0 0 0"
-                  />
+                  <Phone href={`tel:${data.facility.contact.address.phone}`}>
+                    {data.facility.contact.address.phone}
+                  </Phone>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Modal open={showImageModal} onClose={() => setShowImageModal(false)}>
+        <ImageModal
+          index={imageIndex}
+          setIndex={setImageIndex}
+          images={data.facility.photos}
+        />
+      </Modal>
     </Container>
   );
 };
@@ -281,12 +295,15 @@ const Container = styled.div`
 const Image = styled.img`
   border-radius: 10px;
   width: 100%;
-  min-width: 100%;
-  max-width: 100%;
   height: 150px;
   object-fit: cover;
   object-position: center;
   border-radius: 15px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 const BlurredImage = styled.img`
@@ -298,6 +315,11 @@ const BlurredImage = styled.img`
   opacity: 0.3;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 15px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 const SeeMoreText = styled.div`
@@ -305,6 +327,13 @@ const SeeMoreText = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const Phone = styled.a`
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-weight: 400;
+  margin-left: 5px;
 `;
 
 const calculateDynamicStyles = (screenSize: number): IDynamicStyles => {

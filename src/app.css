@@ -15,6 +15,22 @@ code {
     monospace;
 }
 
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 12px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
 #close-icon {
   width: 35px;
   height: 100%;
@@ -89,4 +105,26 @@ code {
   background-color: #ff4040;
   transition: all 0.35s ease-in-out;
   z-index: 99999;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-prev:focus {
+  font-size: inherit;
+  left: 5%;
+  z-index: 2;
+  color: white;
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-next:hover,
+.ant-carousel .slick-next:focus {
+  font-size: inherit;
+  right: 5%;
+  z-index: 2;
+  color: white;
+}
+
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
+  background-color: rgba(0, 0, 0, 0.8) !important;
 }
